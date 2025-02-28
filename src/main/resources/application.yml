@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: affiliate-batch-processor
+  datasource:
+    url: jdbc:postgresql://localhost:5431/batch_db
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+  batch:
+    jdbc:
+      initialize-schema: always #with this we allow that spring creates tables required to Spring Batch manages jobs
+    job:
+      enabled: false #it does not allow that jobs will be executed automatically
