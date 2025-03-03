@@ -10,6 +10,7 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -17,6 +18,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @EnableBatchProcessing
 public class AffiliateBatchConfig {
+    @Value("${spring.application.affiliate-chunk-size}")
+    private int chunkSize;
+
     @Bean
     public Job processAffiliatesJob(JobRepository jobRepository, Step step) {
         return new JobBuilder("affiliatesJob", jobRepository)//registering a job with its step in jobRepository
@@ -34,7 +38,7 @@ public class AffiliateBatchConfig {
                      ItemProcessor<AffiliateDTO, AffiliateDTO> processor,
                      ItemWriter<AffiliateDTO> writer) {
         return new StepBuilder("affiliatesStep", jobRepository)//registering its name
-                .<AffiliateDTO, AffiliateDTO>chunk(100, transactionManager)//chunk size
+                .<AffiliateDTO, AffiliateDTO>chunk(chunkSize, transactionManager)//chunk size
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)

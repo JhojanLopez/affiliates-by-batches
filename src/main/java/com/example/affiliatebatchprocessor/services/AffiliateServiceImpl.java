@@ -35,8 +35,4 @@ public class AffiliateServiceImpl implements AffiliateService {
         }
 
     }
-    @Override
-    public void insert(AffiliateDTO affiliateDTO) {
-
-    }
 }

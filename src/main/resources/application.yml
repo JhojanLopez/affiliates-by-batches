@@ -1,5 +1,6 @@
 spring:
   application:
+    affiliate-chunk-size: 200
     name: affiliate-batch-processor
   datasource:
     url: jdbc:postgresql://localhost:5431/batch_db
@@ -14,3 +15,8 @@ spring:
       initialize-schema: always #with this we allow that spring creates tables required to Spring Batch manages jobs
     job:
       enabled: false #it does not allow that jobs will be executed automatically
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-postgresql.sql #initialize schema required to use spring batch
