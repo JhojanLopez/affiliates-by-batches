@@ -1,6 +1,6 @@
 package com.example.affiliatebatchprocessor.batches.configurations;
 
-import com.example.affiliatebatchprocessor.models.AffiliateDTO;
+/*import com.example.affiliatebatchprocessor.models.AffiliateDTO;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -13,11 +13,12 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
-
-@Configuration
-@EnableBatchProcessing
+import org.springframework.transaction.PlatformTransactionManager;*/
+// Configuration to use with a reader as bean.
+//@Configuration
+//@EnableBatchProcessing
 public class AffiliateBatchConfig {
+    /*
     @Value("${spring.application.affiliate-chunk-size}")
     private int chunkSize;
 
@@ -26,12 +27,13 @@ public class AffiliateBatchConfig {
         return new JobBuilder("affiliatesJob", jobRepository)//registering a job with its step in jobRepository
                 .start(step)
                 .build();
-    }
+    }*/
 
     /**
      * creating the affiliate step setting its reader, processor and writer
      * PlatformTransactionManager -> it manages transactions on the step, ensuring operations such as read, process and writer can be atomics
      * */
+/*
     @Bean
     public Step AffiliatesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager,
                      ItemReader<AffiliateDTO> reader,
@@ -48,5 +50,5 @@ public class AffiliateBatchConfig {
                 //.retry(SQLException.class) // 🔄 it allows if there is an error from db
                 //.retryLimit(3) // 🔄 it repeats until 3 times
                 .build();
-    }
+    }*/
 }
